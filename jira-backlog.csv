@@ -1,0 +1,53 @@
+Issue Type,Summary,Description,Priority,Component/s,Labels,Epic Name
+Epic,Foundation and developer platform,"Create the repository, environments, CI/CD, local tooling, ownership controls, and operational baseline.",Highest,Platform,foundation,DIR Foundation
+Task,Confirm team accounts budget and launch region,"Complete the open decisions in project-context.md and assign account owners.",Highest,Product,decision,
+Task,Initialize GitHub repository and protections,"Initialize source control; configure main protection, reviews, status checks, CODEOWNERS, and staging/production environments.",Highest,Platform,foundation,
+Task,Scaffold TypeScript monorepo,"Create web, mobile, API, worker, domain, contracts, database, scheduler, UI, configuration, native, infrastructure, and docs workspaces.",Highest,Platform,foundation,
+Task,Create repeatable local environment,"Provide pinned tools, environment validation, Docker Compose dependencies, fixtures, and one-command setup/dev/test flows.",Highest,Platform,developer-experience,
+Task,Create CI quality and security gates,"Run lint, formatting check, typecheck, tests, builds, secret scan, dependency review, static analysis, and container scan.",High,Platform,ci-security,
+Task,Provision staging through infrastructure as code,"Create isolated staging identity, API, worker, database, queue, storage, secrets, observability, budgets, and rollback path.",High,Platform,staging,
+Epic,Mobile focus feasibility,"Validate user-authorized focus controls on physical iOS and Android devices before committing release scope.",Highest,Mobile,mobile-risk,DIR Mobile Focus
+Spike,Prototype iOS Screen Time controls,"Request individual authorization; apply and revoke a chosen shield; test deletion/revocation and document entitlement requirements on a physical device.",Highest,Mobile,ios,
+Spike,Prototype Android focus controls,"Implement one deterministic user-approved rule using policy-compliant APIs; test revocation, emergency unlock, and Play declaration requirements.",Highest,Mobile,android,
+Task,Define focus-control capability contract,"Expose supported, unavailable, permission-revoked, active, and emergency-unlocked states consistently to product clients.",High,Mobile,mobile-contract,
+Epic,Core account and task system,"Deliver authenticated, owner-isolated task state and cross-client synchronization.",Highest,Backend,core,DIR Core Tasks
+Story,Sign in and establish a session,"As an adult user I can create a secure account and remain signed in on supported clients.",Highest,Backend,auth,
+Story,Create and edit a flexible task,"As a user I can capture a task with title, duration, priority, deadline, and scheduling constraints.",Highest,Product,task,
+Story,Support fixed events and recurring routines,"As a user I can distinguish events, flexible work, and recurring routines without unsafe automatic medication changes.",High,Backend,recurrence,
+Story,Synchronize task state across clients,"As a user I see one consistent task occurrence after offline edits, retries, and duplicate submissions.",Highest,Backend,sync-idempotency,
+Task,Enforce resource authorization,"Test owner isolation and explicit partner grants for every task, schedule, evidence, and coaching resource.",Highest,Security,authorization,
+Epic,Deterministic scheduling,"Build an explainable scheduler that respects approved hours and creates reversible changes.",Highest,Backend,scheduler,DIR Scheduling
+Story,Generate an available-day schedule,"Place flexible work around fixed events, breaks, deadlines, pinned blocks, dependencies, minimum chunks, and the capacity buffer.",Highest,Backend,scheduler,
+Story,Explain and undo schedule changes,"Show the reason for each placement/move and restore the previous valid state.",High,Product,explainability,
+Story,Resolve overloaded days,"Explain when work cannot fit and offer explicit prioritize, resize, reschedule, or drop choices.",High,Product,overload,
+Task,Test time-zone and daylight-saving behavior,"Cover travel, quiet hours, ambiguous/nonexistent local times, recurrence, and deadline boundaries.",Highest,QA,timezone,
+Epic,Reminder and accountability engine,"Deliver finite, consent-bound reminders that stop immediately on completion, pause, or repair.",Highest,Backend,reminders,DIR Reminders
+Story,Schedule an initial reminder and follow-ups,"Apply per-task and daily budgets, quiet hours, expirations, channel preference, and configured intervals without AI dependency.",Highest,Backend,reminders,
+Story,Cancel pending reminders on response,"Completion, pause, repair, consent revocation, and account deletion prevent unsent follow-ups.",Highest,Backend,idempotency,
+Story,Implement Boss Mode,"Separate tone from enforcement; lowering intensity is immediate and increasing it requires confirmation.",High,Product,consent,
+Task,Instrument reminder outcomes,"Measure enqueue delay, dispatch, provider acceptance, invalid destinations, duplicate suppression, and cancellation.",High,Platform,observability,
+Task,Load-test reminder bursts,"Validate at least 100 jobs/second with duplicates, retries, provider throttling, and notification-storm kill switch.",High,QA,performance,
+Epic,Core client experience,"Create the accessible Today, Inbox, Plan, Coach, Progress, Settings, and onboarding experiences.",High,Product,clients,DIR Client Experience
+Story,Complete onboarding without optional permissions,"A user can create the first commitment and use the core product after declining every optional permission.",Highest,Product,onboarding,
+Story,Build Today next-action experience,"Show the current action, two upcoming commitments, starting help, reschedule, capture, and reset actions.",Highest,Product,today,
+Story,Support offline task actions,"Cached tasks and deterministic reminders work offline; pending synchronization is visible and safely reconciles.",High,Mobile,offline,
+Task,Meet accessibility baseline,"Test keyboard and screen-reader navigation, contrast, text scaling, reduced motion, focus order, and touch targets.",High,QA,accessibility,
+Epic,AI coaching and ingestion,"Add schema-constrained coaching and extraction after the deterministic core works.",High,AI,ai,DIR AI Coaching
+Story,Generate a small starting step,"Turn a selected task into an editable concrete first action without changing permissions or external state.",High,AI,starting-help,
+Story,Provide a repair conversation,"Help the user adjust, restart, or drop a missed commitment while respecting tone and distress controls.",High,AI,recovery,
+Task,Build provider-neutral AI gateway,"Add schema validation, prompt/version registry, redaction, timeouts, fallbacks, cost budgets, and per-feature kill switches.",High,AI,ai-platform,
+Task,Create AI evaluation suite,"Evaluate task extraction, ambiguous dates, unsafe claims, tone, distress handling, prompt injection, and proposed schedule changes.",Highest,AI,evals-security,
+Story,Review extracted email candidates,"Present source-linked candidates and require clarification for ambiguous deadlines before scheduling.",High,Integrations,gmail-outlook,
+Epic,Integrations and accountability partners,"Connect approved calendars, Telegram, and narrowly consented partner sharing.",Medium,Integrations,integrations,DIR Integrations
+Story,Connect selected calendars,"Read selected availability and write Directive blocks to a designated calendar without duplicates.",High,Integrations,calendar,
+Story,Link a Telegram conversation,"Link only after user initiation; honor opt-out, limits, expirations, and reminder cancellation.",Medium,Integrations,telegram,
+Story,Invite an accountability partner,"Both parties consent and see only selected titles, agreed times, status, and explicitly configured pending-check-in alerts.",Medium,Product,partner-sharing,
+Task,Revoke partner and integration access,"Revocation stops new sharing/sync promptly and shows accurate state on all clients.",Highest,Security,revocation,
+Epic,Production readiness and launch,"Prove security, reliability, economics, support readiness, and controlled deployment.",Highest,Platform,production,DIR Production
+Task,Complete data inventory retention and deletion design,"Map every data class, purpose, location, access, retention, export, deletion, and provider boundary.",Highest,Security,privacy,
+Task,Write operational runbooks,"Cover provider outage, stuck queue, database restore, compromised credential, bad migration, notification storm, AI kill switch, and rollback.",High,Platform,runbook,
+Task,Test backup restore and recovery objectives,"Prove RPO at most 5 minutes and RTO at most 60 minutes for the selected production design.",Highest,Platform,disaster-recovery,
+Task,Run independent security assessment,"Resolve all critical/high findings before general availability and document accepted residual risk.",Highest,Security,pentest,
+Task,Run four-week closed beta,"Measure follow-through, pressure, start delay, restarts, sync/reminder reliability, complaints, and variable cost by target segment.",Highest,Product,beta,
+Task,Validate 10000-MAU capacity model,"Replace traffic assumptions with measured p50/p95/p99 behavior; pass API, queue, database, provider, and AI budget tests.",Highest,Platform,capacity,
+Task,Execute progressive production rollout,"Release 1%, 10%, 50%, then 100% with explicit health gates, observation windows, and tested rollback.",Highest,Platform,release,
